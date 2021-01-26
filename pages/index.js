@@ -1,40 +1,17 @@
 import styled from "styled-components";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Widget from "../src/components/Widget";
+import QuizBackground from "../src/components/QuizBackground";
+import Footer from "../src/components/Footer";
+import GitHubCorner from "../src/components/GitHubCorner";
 import db from "../db.json";
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    /* New styles */
-    display: flex;
-    flex-direction: column;
-    font-family: 'Lato', sans-serif;
-    // Deixa branco no começo
-    color: ${({ theme }) => theme.colors.contrastText};
-  }
-  html, body {
-    min-height: 100vh;
-  }
-  #__next {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const theme = db.theme;
-
-const BackgroundImage = styled.div`
-  background-image: url(${db.bg});
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-`;
+// const BackgroundImage = styled.div`
+//   background-image: url(${db.bg});
+//   flex: 1;
+//   background-size: cover;
+//   background-position: center;
+// `;
 
 const QuizContainer = styled.div`
   width: 100%;
@@ -49,20 +26,19 @@ const QuizContainer = styled.div`
 
 export default function Home() {
   return (
-    <>
-      <GlobalStyle />
-      <BackgroundImage>
-        <QuizContainer>
-          <Widget>
-            <Widget.Header>
-              <h1>É o Blindas</h1>
-            </Widget.Header>
-            <Widget.Content>
-              <p>vai brincando...</p>
-            </Widget.Content>
-          </Widget>
-        </QuizContainer>
-      </BackgroundImage>
-    </>
+    <QuizBackground backgroundImage={db.bg}>
+      <QuizContainer>
+        <Widget>
+          <Widget.Header>
+            <h1>É o Blindas</h1>
+          </Widget.Header>
+          <Widget.Content>
+            <p>vai brincando...</p>
+          </Widget.Content>
+        </Widget>
+        <Footer />
+      </QuizContainer>
+      <GitHubCorner projectUrl="https://github.com/gab618" />
+    </QuizBackground>
   );
 }
