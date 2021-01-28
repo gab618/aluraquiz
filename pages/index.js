@@ -1,17 +1,14 @@
-import styled from "styled-components";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Widget from "../src/components/Widget";
-import QuizBackground from "../src/components/QuizBackground";
-import Footer from "../src/components/Footer";
-import GitHubCorner from "../src/components/GitHubCorner";
-import db from "../db.json";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-// const BackgroundImage = styled.div`
-//   background-image: url(${db.bg});
-//   flex: 1;
-//   background-size: cover;
-//   background-position: center;
-// `;
+import Widget from '../src/components/Widget';
+import QuizBackground from '../src/components/QuizBackground';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
+
+import db from '../db.json';
 
 const QuizContainer = styled.div`
   width: 100%;
@@ -25,15 +22,44 @@ const QuizContainer = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
+  const [name, setName] = useState('');
+
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Drezinho Quiz</title>
+      </Head>
       <QuizContainer>
         <Widget>
           <Widget.Header>
-            <h1>É o Blindas</h1>
+            <h1>Você conhece o Drezinho?</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>vai brincando...</p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/quiz?name=${name}`);
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Diz seu nome ai"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <button type="submit" disabled={name.length === 0}>
+                Jogar
+              </button>
+            </form>
+          </Widget.Content>
+        </Widget>
+
+        <Widget>
+          <Widget.Content>
+            <h1>Quizes da Galera</h1>
+            <p>Três novelas exemplares</p>
           </Widget.Content>
         </Widget>
         <Footer />
