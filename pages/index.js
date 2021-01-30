@@ -8,6 +8,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 import db from '../db.json';
 
@@ -46,10 +47,11 @@ export default function Home() {
               <Input
                 placeholder="Diz seu nome ai"
                 onChange={(e) => setName(e.target.value)}
+                value={name}
               />
-              <button type="submit" disabled={name.length === 0}>
+              <Button type="submit" disabled={name.length === 0}>
                 Jogar
-              </button>
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
