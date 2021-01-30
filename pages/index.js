@@ -7,6 +7,7 @@ import Widget from '../src/components/Widget';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import Input from '../src/components/Input';
 
 import db from '../db.json';
 
@@ -42,12 +43,9 @@ export default function Home() {
                 router.push(`/quiz?name=${name}`);
               }}
             >
-              <input
-                type="text"
+              <Input
                 placeholder="Diz seu nome ai"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                onChange={(e) => setName(e.target.value)}
               />
               <button type="submit" disabled={name.length === 0}>
                 Jogar
