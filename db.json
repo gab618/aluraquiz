@@ -1,23 +1,96 @@
 {
-  "bg": "https://i.imgur.com/gCO3WRO.jpg",
-  "title": "Quiz CSS da Alura",
-  "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+  "bg": "https://i.imgur.com/QdtsKjG.jpg",
+  "title": "Quiz do Drezinho",
+  "description": "Teste os seus conhecimentos sobre o grande André Ferrarezi",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "https://i.imgur.com/8c58nO4.png",
+      "title": "Quanto o Drezinho calça?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "answer": 1,
+      "alternatives": ["46", "47", "48", "50"]
+    },
+    {
+      "image": "https://i.imgur.com/xbmHmsa.jpg?2",
+      "title": "Qual o emoji o Drezonho usa mais?",
+      "description": "Bullet",
+      "answer": 0,
+      "alternatives": ["🔥", "😎", "😉", "💣"]
     },
     {
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "title": "Qual o nome da cadela do Drezinho?",
+      "description": "Auau",
+      "answer": 2,
+      "alternatives": ["Ellie", "Tigresa", "Pantera", "Blindas"]
+    },
+    {
+      "image": "https://i.imgur.com/QKvmWOb.png?1",
+      "title": "Qual champion o Drezinho é mono?",
+      "description": "Ousado e brilhante",
+      "answer": 0,
+      "alternatives": ["Senna", "Ezreal", "Lux", "Nunu"]
+    },
+    {
+      "image": "https://i.imgur.com/6FMfZwF.jpg",
+      "title": "Qual aula Drezinho matava?",
+      "description": "Ousado e brilhante",
+      "answer": 1,
+      "alternatives": [
+        "Educação física",
+        "Catequese",
+        "Xadrez",
+        "Educação sexual"
+      ]
+    },
+    {
+      "image": "https://i.imgur.com/cZSddrC.png?1",
+      "title": "Drezinho tem uma camisa de qual youtuber cancelado?",
+      "description": "Essa é fácil",
+      "answer": 2,
+      "alternatives": ["PC Siqueira", "4Lan", "Xbox mil grau", "Felipe Neto"]
+    },
+    {
+      "image": "https://i.imgur.com/RbOheby.png",
+      "title": "Na homenagem que Drezinho fez a Formigão, quantas vezes ele falou 'Dedé' antes da internet cair?",
+      "description": "Dedé, Dedé, Dedé, Dedé, Dedé...",
+      "answer": 3,
+      "alternatives": ["15807", "9312", "47508", "28107"]
+    },
+    {
+      "image": "https://i.imgur.com/Wx3Jlyp.png",
+      "title": "Qual o nick do Drezinho na PSN?",
+      "description": "Essa é difícil",
       "answer": 0,
       "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
+        "andreferrarezi99",
+        "drezin_del_zap",
+        "portgas99",
+        "xXx_20matar_xXx"
+      ]
+    },
+    {
+      "image": "https://i.imgur.com/QdtsKjG.jpg",
+      "title": "Qual série de filmes Drezinho 'assistiu' dormindo?",
+      "description": "Filmasso",
+      "answer": 1,
+      "alternatives": [
+        "Harry Potter",
+        "Senhor dos Anéis",
+        "Crepúsculo",
+        "Star Wars"
+      ]
+    },
+    {
+      "image": "https://i.imgur.com/mi8SVyi.png",
+      "title": "Por que Drezinho agradeceu a Alexia?",
+      "description": "Tamo junto",
+      "answer": 2,
+      "alternatives": [
+        "Por ser uma ótima amiga",
+        "Pelas palavras de incentivo",
+        "Pelos R$5,50",
+        "Por ter mandado ela tomar no c*"
       ]
     }
   ],
