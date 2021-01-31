@@ -8,7 +8,12 @@ import QuizContainer from '../src/components/QuizContainer';
 import Button from '../src/components/Button';
 
 function QuestionWidget({ question, totalQuestions, questionIndex, onSubmit }) {
+  const [selectedAlternative, setSelectedAlternative] = useState(undefined);
+  const [isSubmited, setIsSubmited] = useState(false);
   const questionId = `question__${questionIndex}`;
+  const isCorrect = selectedAlternative === question.answer;
+  const hasAlternativeSelected = selectedAlternative !== undefined;
+
   return (
     <Widget>
       <Widget.Header>
@@ -27,7 +32,12 @@ function QuestionWidget({ question, totalQuestions, questionIndex, onSubmit }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit();
+            setIsSubmited(true);
+            setTimeout(() => {
+              onSubmit();
+              setIsSubmited(false);
+              setSelectedAlternative(undefined);
+            }, 3 * 1000);
           }}
         >
           <h2>{question.title}</h2>
@@ -41,13 +51,22 @@ function QuestionWidget({ question, totalQuestions, questionIndex, onSubmit }) {
                 htmlFor={alternativeId}
                 key={alternativeId}
               >
-                <input id={alternativeId} name={questionId} type="radio" />
+                <input
+                  id={alternativeId}
+                  name={questionId}
+                  type="radio"
+                  onChange={() => setSelectedAlternative(index)}
+                />
                 {alternative}
               </Widget.Topic>
             );
           })}
 
-          <Button type="submit">Confirmar</Button>
+          <Button type="submit" disabled={!hasAlternativeSelected}>
+            Confirmar
+          </Button>
+          {isSubmited && isCorrect && <p>Voce acertou!</p>}
+          {isSubmited && !isCorrect && <p>Voce errou!</p>}
         </form>
       </Widget.Content>
     </Widget>
