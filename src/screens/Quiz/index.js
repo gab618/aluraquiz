@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Head from 'next/head';
 import { Lottie } from '@crello/react-lottie';
 import { useRouter } from 'next/router';
 import useWindowSize from 'react-use/lib/useWindowSize';
@@ -204,6 +205,9 @@ export default function QuizPage({ externalQuestions, externalBg }) {
 
   return (
     <QuizBackground backgroundImage={bg}>
+      <Head>
+        <title>#{questionIndex + 1} -Drezinho Quiz</title>
+      </Head>
       <QuizContainer>
         <QuizLogo />
         {screenState === screenStates.QUIZ && (
