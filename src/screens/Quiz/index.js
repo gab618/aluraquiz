@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Lottie } from '@crello/react-lottie';
+import { useRouter } from 'next/router';
+
 import Widget from '../../components/Widget';
 import QuizLogo from '../../components/QuizLogo';
 import QuizBackground from '../../components/QuizBackground';
@@ -12,20 +14,32 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 import loadingAnimation from '../../lotties/bullet.json';
 
 function ResultWidget({ results }) {
+  const router = useRouter();
+  const { name } = router.query;
+  const points = results.filter((x) => x).length;
+  const totalQuestions = results.length;
+  const description =
+    points > 7
+      ? 'Você realmente conhece o Drezinho 🔥'
+      : 'Não foi tão mal, cabeça de pica.';
   return (
     <Widget>
-      <Widget.Header>Tela de Resultado:</Widget.Header>
+      <Widget.Header>🔥 RESULTADO 🔥</Widget.Header>
 
       <Widget.Content>
-        <p>Você acertou {results.filter((x) => x).length} perguntas</p>
-        <ul>
-          {results.map((result, index) => (
-            <li key={`result__${index}`}>
-              #{index + 1} Resultado:
-              {result === true ? 'Acertou' : 'Errou'}
-            </li>
-          ))}
-        </ul>
+        <img
+          alt="Descrição"
+          style={{
+            width: '100%',
+            height: '150px',
+            objectFit: 'cover',
+          }}
+          src="https://media.giphy.com/media/HIIlbxmyNOSZMviP0d/giphy.gif"
+        />
+        <h4>
+          Parabéns {name}! Você acertou {points} de {totalQuestions} perguntas!
+        </h4>
+        <p>{description}</p>
       </Widget.Content>
     </Widget>
   );
@@ -146,6 +160,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
+
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
   const totalQuestions = externalQuestions.length;
@@ -163,7 +178,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   React.useEffect(() => {
     // fetch() ...
     setTimeout(() => {
-      setScreenState(screenStates.QUIZ);
+      setScreenState(screenStates.RESULT);
     }, 1 * 2000);
     // nasce === didMount
   }, []);

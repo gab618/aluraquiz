@@ -7,6 +7,7 @@ import Widget from '../src/components/Widget';
 import Link from '../src/components/Link';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizContainer from '../src/components/QuizContainer';
+import QuizLogo from '../src/components/QuizLogo';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import Input from '../src/components/Input';
@@ -24,6 +25,7 @@ export default function Home() {
         <title>Drezinho Quiz</title>
       </Head>
       <QuizContainer>
+        <QuizLogo />
         <Widget
           as={motion.section}
           transition={{ delay: 0, duration: 0.5 }}
