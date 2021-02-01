@@ -2,6 +2,8 @@
 import React from 'react';
 import { Lottie } from '@crello/react-lottie';
 import { useRouter } from 'next/router';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 import Widget from '../../components/Widget';
 import QuizLogo from '../../components/QuizLogo';
@@ -77,77 +79,85 @@ function QuestionWidget({
     undefined
   );
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
+  const { width, height } = useWindowSize();
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
 
   return (
-    <Widget>
-      <Widget.Header>
-        <BackLinkArrow href="/" />
-        <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
-      </Widget.Header>
-
-      <img
-        alt="Descrição"
-        style={{
-          width: '100%',
-          height: '150px',
-          objectFit: 'cover',
-        }}
-        src={question.image}
+    <>
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={isCorrect && isQuestionSubmited ? 200 : 0}
       />
-      <Widget.Content>
-        <h2>{question.title}</h2>
-        <p>{question.description}</p>
+      <Widget>
+        <Widget.Header>
+          <BackLinkArrow href="/" />
+          <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
+        </Widget.Header>
 
-        <AlternativesForm
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
-            setIsQuestionSubmited(true);
-            setTimeout(() => {
-              addResult(isCorrect);
-              onSubmit();
-              setIsQuestionSubmited(false);
-              setSelectedAlternative(undefined);
-            }, 3 * 1000);
+        <img
+          alt="Descrição"
+          style={{
+            width: '100%',
+            height: '150px',
+            objectFit: 'cover',
           }}
-        >
-          {question.alternatives.map((alternative, alternativeIndex) => {
-            const alternativeId = `alternative__${alternativeIndex}`;
-            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
-            const isSelected = selectedAlternative === alternativeIndex;
-            return (
-              <Widget.Topic
-                as="label"
-                key={alternativeId}
-                htmlFor={alternativeId}
-                data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
-              >
-                <input
-                  style={{ display: 'none' }}
-                  id={alternativeId}
-                  name={questionId}
-                  onChange={() => setSelectedAlternative(alternativeIndex)}
-                  type="radio"
-                />
-                {alternative}
-              </Widget.Topic>
-            );
-          })}
+          src={question.image}
+        />
+        <Widget.Content>
+          <h2>{question.title}</h2>
+          <p>{question.description}</p>
 
-          {/* <pre>
+          <AlternativesForm
+            onSubmit={(infosDoEvento) => {
+              infosDoEvento.preventDefault();
+              setIsQuestionSubmited(true);
+              setTimeout(() => {
+                addResult(isCorrect);
+                setIsQuestionSubmited(false);
+                setSelectedAlternative(undefined);
+                onSubmit();
+              }, 3 * 1000);
+            }}
+          >
+            {question.alternatives.map((alternative, alternativeIndex) => {
+              const alternativeId = `alternative__${alternativeIndex}`;
+              const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+              const isSelected = selectedAlternative === alternativeIndex;
+              return (
+                <Widget.Topic
+                  as="label"
+                  key={alternativeId}
+                  htmlFor={alternativeId}
+                  data-selected={isSelected}
+                  data-status={isQuestionSubmited && alternativeStatus}
+                >
+                  <input
+                    style={{ display: 'none' }}
+                    id={alternativeId}
+                    name={questionId}
+                    onChange={() => setSelectedAlternative(alternativeIndex)}
+                    type="radio"
+                  />
+                  {alternative}
+                </Widget.Topic>
+              );
+            })}
+
+            {/* <pre>
             {JSON.stringify(question, null, 4)}
           </pre> */}
-          <Button type="submit" disabled={!hasAlternativeSelected}>
-            Confirmar
-          </Button>
-          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
-        </AlternativesForm>
-      </Widget.Content>
-    </Widget>
+            <Button type="submit" disabled={!hasAlternativeSelected}>
+              Confirmar
+            </Button>
+            {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
+            {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+          </AlternativesForm>
+        </Widget.Content>
+      </Widget>
+    </>
   );
 }
 
@@ -178,7 +188,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   React.useEffect(() => {
     // fetch() ...
     setTimeout(() => {
-      setScreenState(screenStates.RESULT);
+      setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
     // nasce === didMount
   }, []);
