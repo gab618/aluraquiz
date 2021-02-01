@@ -18,7 +18,7 @@
       "alternatives": ["🔥", "😎", "😉", "💣"]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+      "image": "https://i.imgur.com/WZPhNoI.jpg",
       "title": "Qual o nome da cadela do Drezinho?",
       "description": "Auau",
       "answer": 2,
@@ -94,7 +94,10 @@
       ]
     }
   ],
-  "external": [""],
+  "external": [
+    "https://quiz-pokemon.dashpunk.vercel.app/",
+    "https://flow-quiz.garubieru.vercel.app/"
+  ],
   "theme": {
     "colors": {
       "primary": "#0d47a1",
